@@ -52,6 +52,7 @@ namespace PokeForms.Views
 
 			Children.Add (_ShadowView, 0, 0);
 			Children.Add (_InsideStack,0, 0);
+
 			//
 			//Opacity = 1;
 			//BackgroundColor = Color.Black;

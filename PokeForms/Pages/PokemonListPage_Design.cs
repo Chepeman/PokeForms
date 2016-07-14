@@ -7,44 +7,37 @@ namespace PokeForms.Pages
 
 	public partial class PokemonListPage : ContentPage
 	{
-		protected Grid _PokemonGrid;
-		protected ScrollView _ScrollView;
+		protected ListView _pokemonList;
 
 
 		public void Layout(){
-			_PokemonGrid = new Grid () {
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				Padding = new Thickness(10,10,10,0),
-				RowSpacing = 0,
-				ColumnSpacing = 0,
-			};
 
-			_ScrollView = new ScrollView () {
-				BackgroundColor = Color.Transparent,
-				//VerticalOptions = LayoutOptions.FillAndExpand,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				Content = _PokemonGrid,
-				IsClippedToBounds = true,
-			};
+			var template = new DataTemplate(typeof(PokemonCell));
 
-			_ScrollView.Scrolled += async (sender, e) => {
-				var difference = _PokemonGrid.Height - _ScrollView.Height;
-
-				if(((int)difference) == ((int)e.ScrollY)){
-					if(PokeCounter >= PokemonMax) 
-						return;
-					int counterDiff = PokemonMax - PokeCounter;
-					if(counterDiff < 9)
-						await LoadPokemon(PokeCounter, PokeCounter + counterDiff);
-					else
-						await LoadPokemon(PokeCounter, PokeCounter + 9);
-				}
-			};
-
-			Content = _ScrollView;
-
+			_pokemonList = new ListView();
+			_pokemonList.ItemsSource = PokemonList;
+			_pokemonList.ItemTemplate = template;
+			_pokemonList.RowHeight = 250;
+			_pokemonList.ItemAppearing += _pokemonList_ItemAppearing;
+			_pokemonList.SeparatorVisibility = SeparatorVisibility.Default;
+			Content = _pokemonList;
 		}
 
+
+
+		async void _pokemonList_ItemAppearing(object sender, ItemVisibilityEventArgs e)
+		{
+			if (PokemonList != null &&  e.Item == PokemonList[PokemonList.Count - 1])
+       		{
+				if (PokeCounter >= PokemonMax)
+					return;
+				int counterDiff = PokemonMax - PokeCounter;
+				if (counterDiff < 9)
+					await LoadPokemon(PokeCounter, PokeCounter + counterDiff);
+				else
+					await LoadPokemon(PokeCounter, PokeCounter + 9);
+			}
+		}
 	}
 }
 

@@ -22,6 +22,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\PokemonListPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\PokemonListPage_Design.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dependencies\IHudManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PokemonCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PokemonVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />

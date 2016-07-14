@@ -24,9 +24,13 @@ namespace PokeForms.Pages
 				RegionTitle = "Kanto"
 			};
 
-			tapGestureRecognizer = new TapGestureRecognizer();
-			tapGestureRecognizer.Tapped += (s, e) => {
-				HandleTap(0);
+			tapGestureRecognizer = new TapGestureRecognizer
+			{
+				Command = new Command(() =>
+				{
+					HandleTap(0);
+				}),
+				NumberOfTapsRequired = 1,
 			};
 			KantoCard.GestureRecognizers.Add(tapGestureRecognizer);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace PokeForms
@@ -27,6 +28,8 @@ namespace PokeForms
 
 		public static string EndPoint = "http://pokeapi.co/api/v1/";
 		public static string EndPointImages = "http://pokeapi.co/media/img/";
+
+		public static Dictionary<string, Color> _ColorType = new Dictionary<string, Color>();
 
 		public static Color NormalType = Color.FromHex("A8A878");
 		public static Color FightingType = Color.FromHex("C03028");
